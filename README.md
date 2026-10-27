@@ -67,6 +67,7 @@ And `.cargo/config.toml`:
 target = "./ps2.json"
 
 [unstable]
+json-target-spec = true
 build-std = ["core", "compiler_builtins"]
 build-std-features = ["compiler-builtins-mem"]
 ```
@@ -74,6 +75,16 @@ build-std-features = ["compiler-builtins-mem"]
 ### Building your project
 
 To build your project, run `cargo build` from the root directory of your crate.
+
+If the MIPS linker is not installed, install it from the repository root with:
+```sh
+./scripts/install-mips-binutils.sh
+```
+The script builds binutils `binutils-2_44` for `mips64el-none-elf` and installs it
+to `~/.local/opt/binutils-mips` by default. It installs build dependencies through
+`apt-get` and prints the `PATH` entry needed to use the linker. You can override
+the binutils version or installation prefix with `BINUTILS_VERSION` and
+`BINUTILS_PREFIX`.
 
 ### Running your project: PS2: PS2Link
 
